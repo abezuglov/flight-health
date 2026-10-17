@@ -1,0 +1,9 @@
+# data stays local: raw downloads are 7 GB and processed tables 1.3 GB
+data/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# personal progress tracker (published separately as a private artifact)
+progress.html

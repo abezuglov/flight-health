@@ -1,0 +1,79 @@
+# Flight Health
+
+Cleaning many-channel flight recorder data and detecting anomalies, then testing whether those anomalies show up in the flights before real maintenance events.
+
+**Status:** Phase 1 (data pipeline) done for NASA DASHlink tail 670. Phases 2–4 (anomaly detection, NGAFID maintenance validation, app) planned.
+
+## Data
+
+| Dataset | What it is | Use here |
+|---|---|---|
+| [NASA DASHlink flight data](https://catalog.data.gov/dataset/flight-data-for-tail-670), tail 670 set 1 | 637 recordings, 821 hours, 186 channels at 0.25–16 Hz, 2001. Four-engine regional jet (most likely BAe 146 / Avro RJ; NASA doesn't name the type). | Pipeline and anomaly detection |
+| [NGAFID maintenance dataset](https://zenodo.org/record/6624956) (CC-BY-4.0) | 11,446 general-aviation flights, 23 channels at 1 Hz, labeled before/after 2,111 unplanned maintenance events | Validation (Phase 3) |
+
+Raw files go in `data/raw/` and are never modified.
+
+## Pipeline
+
+```
+python scripts/build_dashlink.py data/raw/dashlink/tail670 data/processed/dashlink
+python scripts/quality_report.py data/processed/dashlink reports
+python -m pytest tests
+```
+
+Outputs under `data/processed/dashlink/`:
+
+| Table | Grain | Notes |
+|---|---|---|
+| `catalog/parameters.parquet` | one row per channel | kind (continuous / discrete / metadata / constant / counter), group, engine index, valid range, no-data codes, observed ranges, notes |
+| `catalog/flights.parquet` | one row per recording | start time and its source, duration, takeoff/landing seen, fragment flag, max altitude, engine hours/cycles, flag counts, source SHA-256 |
+| `aligned_1hz/tail=670/<flight_id>.parquet` | one row per second | every continuous and discrete channel; fast channels as the mean of the second (plus min/max for accelerations and attitude); derived `phase` and the aircraft's own `ph_acms` |
+| `highrate/tail=670/<flight_id>.parquet` | 16 rows per second | the eight 8/16 Hz channels at native rate, uncleaned |
+| `quality_flags.parquet` | one row per problem | check, severity, channel, time span, detail |
+| `phases.parquet` | one row per phase segment | parked, taxi_out, takeoff, climb, cruise, descent, approach, landing, taxi_in |
+
+Every cleaning step and the reasoning behind it: [docs/cleaning_decisions.md](docs/cleaning_decisions.md).
+
+**Alignment.** Row `t` summarizes the window (t−1, t] seconds, so nothing in a row was recorded after time `t`. Channels slower than 1 Hz hold their last value.
+
+**Cleaning.** Checks run on each channel at its native rate. Samples flagged `bad` are left out of the 1 Hz values (a second goes missing only if all its samples were bad). Every dropped sample is listed in `quality_flags`; original values stay in the raw files and the `highrate` table. Rules live in [config/param_rules.csv](config/param_rules.csv).
+
+| Check | Severity | What it catches |
+|---|---|---|
+| sentinel | bad | no-data codes: VRTG −3.375 g, LATG/LONG −1.083 g, oil temp −390, position 0 |
+| out_of_range | bad | values outside physical limits (e.g. CAS 511.9 kt saturation, oil pressure 9,999) |
+| dropout | bad | engine channels reading 0 for up to 20 s in flight between normal values |
+| spike | bad | single-sample out-and-back jumps larger than 10× the channel's typical step |
+| stuck | warn | engine and air-temperature channels frozen for 5+ minutes in flight |
+| frame_gap | warn | frame counter skipping (none found after handling its wrap-around) |
+| cross_check | warn | redundant sensors disagreeing for 10+ s (baro altitudes, AOA vanes, altitude rate vs inertial vertical speed) |
+
+## Things this data gets wrong that you'd otherwise trust
+
+- `WOW` (weight on wheels) is inverted: 1 = airborne.
+- Ground speed reads 0 below about 25 kt, so taxi is detected from engines running, not speed.
+- 2.9% of vertical-acceleration samples are a −3.375 g no-data code scattered through every flight.
+- 82 of 637 recordings have corrupt date fields (year up to 2165); start time falls back to the file name.
+- 89 recordings never leave the ground (likely engine runs or aborted recordings).
+- Some files carry a `_1` suffix: a second recording starting in the same minute.
+
+## Phase 1 results (tail 670)
+
+- 0.14% of all samples dropped as bad; 81 of 103 continuous channels had at least one bad sample.
+- Worst channel: VRTG, 2.9% of samples dropped but only 0.16% of seconds left without a value.
+- Derived phases agree with the aircraft's own phase code on 88% of seconds when compared on the phases both can express. Most of the gap is definitional: the aircraft calls any level flight "cruise", while this pipeline calls level-offs below the top altitude part of climb or descent.
+
+Full numbers: [reports/quality_summary.json](reports/quality_summary.json), [reports/dropped_by_param.csv](reports/dropped_by_param.csv), [reports/phase_vs_acms.csv](reports/phase_vs_acms.csv).
+
+## Safety note
+
+The NGAFID data ships as a Python pickle. It was scanned with `pickletools` first (it only builds numpy arrays) and is loaded only through [scripts/safe_pickle.py](scripts/safe_pickle.py), which refuses any other type.
+
+## Setup
+
+```
+python -m venv .venv
+.venv/Scripts/pip install -r requirements.txt   # .venv/bin/pip on macOS/Linux
+```
+
+Download [Tail_670_1.zip](https://c3.nasa.gov/dashlink/static/media/dataset/Tail_670_1.zip) and unzip into `data/raw/dashlink/tail670/`; download `2days.tar.gz` from the [Zenodo record](https://zenodo.org/record/6624956) and extract into `data/raw/ngafid/`.

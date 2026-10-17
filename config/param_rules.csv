@@ -1,0 +1,39 @@
+mnemonic_regex,valid_min,valid_max,sentinels,stuck_check,note
+^(ALT|BAL1|BAL2)$,-2000,45000,,,pressure / baro altitude in feet
+^ALTS$,0,45000,,,selected altitude
+^(ALTR|IVV)$,-10000,10000,,,vertical speed ft/min
+^VSPS$,-8000,8000,,,selected vertical speed
+^CAS$,0,350,,,511.9 = saturated code
+^CASM$,0,400,,,
+^CASS$,0,400,,,
+^TAS$,0,500,,,511.9 = saturated code
+^GS$,0,650,,,
+^MACH$,0,0.9,,,
+^MNS$,0,900,,,selected Mach in milli-Mach
+^(PSA|PT)$,100,1100,,,static / total pressure mb; 0 = no data
+^PS$,3,32,,,static pressure inHg
+^PI$,0,300,,,impact pressure mb
+^RALT$,-20,6000,,,radio altitude ft
+^(SAT|TAT)$,-80,60,,y,air temperature deg C
+^(AOA1|AOA2|AOAI|AOAC)$,-25,35,,,angle of attack deg
+^VRTG$,-1.5,4,-3.375,,-3.375 g = dropout code
+^(LATG|LONG)$,-1,1,-1.0833,,-1.0833 g = dropout code
+^(BLAC|CTAC|FPAC)$,-1,1,,,
+^PTCH$,-30,40,,,
+^ROLL$,-60,60,,,
+^(TH|MH|TRK|TRKM|WD|HDGS|CRSS)$,-180,180,,,angles wrap at +-180
+^WS$,0,250,,,wind speed kt
+^LATP$,-90,90,0,,0 = no position
+^LONP$,-180,180,0,,0 = no position
+^EGT_\d$,0,900,,y,exhaust gas temp deg C
+^FF_\d$,0,4000,,y,fuel flow lb/hr
+^(N1_\d|N2_\d)$,0,110,,y,fan / core speed %
+^(N1T|N1C)$,0,110,,,127.9 = saturated code
+^OIP_\d$,0,150,,,9999 = no data
+^OIT_\d$,-60,180,-390,,-390 = no data
+^PLA_\d$,-10,120,,,power lever angle
+^VIB_\d$,0,5,,,
+^(FQTY_1|FQTY_4)$,0,10000,,,fuel lb
+^DATE_YEAR$,1995,2015,,,corrupt date frames exist
+^DATE_MONTH$,1,12,,,
+^DATE_DAY$,1,31,,,

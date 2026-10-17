@@ -1,0 +1,19 @@
+check,severity,group,n
+cross_check,warn,all channels,86
+dropout,bad,engine,23449
+out_of_range,bad,air_data,53
+out_of_range,bad,attitude,422
+out_of_range,bad,engine,12
+sentinel,bad,attitude,905829
+sentinel,bad,engine,32080
+sentinel,bad,nav,322
+spike,bad,air_data,13066
+spike,bad,attitude,503
+spike,bad,autopilot,415
+spike,bad,controls,268003
+spike,bad,engine,7875
+spike,bad,fuel,10
+spike,bad,gear_brakes,3348
+spike,bad,nav,27101
+stuck,warn,air_data,30
+stuck,warn,engine,6

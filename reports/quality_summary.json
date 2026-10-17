@@ -1,0 +1,122 @@
+{
+  "flights": 637,
+  "flight_hours": 820.7,
+  "ground_only_recordings": 89,
+  "fragments": 89,
+  "multi_leg": 0,
+  "start_time_from_filename": 82,
+  "flags_total": 1282610,
+  "flags_by_check": {
+    "cross_check": 86,
+    "dropout": 23449,
+    "out_of_range": 487,
+    "sentinel": 938231,
+    "spike": 320321,
+    "stuck": 36
+  },
+  "channels_checked": 103,
+  "channels_with_bad_samples": 81,
+  "pct_all_samples_dropped": 0.141,
+  "top_dropped": [
+    {
+      "param": "vrtg",
+      "group": "attitude",
+      "pct_samples_dropped": 2.919,
+      "pct_seconds_missing": 0.164
+    },
+    {
+      "param": "latp",
+      "group": "nav",
+      "pct_samples_dropped": 2.332,
+      "pct_seconds_missing": 2.332
+    },
+    {
+      "param": "long",
+      "group": "attitude",
+      "pct_samples_dropped": 1.277,
+      "pct_seconds_missing": 0.161
+    },
+    {
+      "param": "latg",
+      "group": "attitude",
+      "pct_samples_dropped": 1.214,
+      "pct_seconds_missing": 0.161
+    },
+    {
+      "param": "dwpt",
+      "group": "nav",
+      "pct_samples_dropped": 0.911,
+      "pct_seconds_missing": 0.911
+    },
+    {
+      "param": "ccpc",
+      "group": "controls",
+      "pct_samples_dropped": 0.673,
+      "pct_seconds_missing": 0.181
+    },
+    {
+      "param": "spl_1",
+      "group": "controls",
+      "pct_samples_dropped": 0.602,
+      "pct_seconds_missing": 0.602
+    },
+    {
+      "param": "rudp",
+      "group": "controls",
+      "pct_samples_dropped": 0.571,
+      "pct_seconds_missing": 0.082
+    },
+    {
+      "param": "rudd",
+      "group": "controls",
+      "pct_samples_dropped": 0.531,
+      "pct_seconds_missing": 0.098
+    },
+    {
+      "param": "cwpc",
+      "group": "controls",
+      "pct_samples_dropped": 0.523,
+      "pct_seconds_missing": 0.056
+    }
+  ],
+  "acms_code_to_phase": {
+    "0": "taxi_in",
+    "1": "parked",
+    "2": "taxi_out",
+    "3": "takeoff",
+    "4": "climb",
+    "5": "cruise",
+    "6": "descent",
+    "7": "landing"
+  },
+  "phase_agreement_exact": 0.743,
+  "phase_agreement_coarse": 0.882,
+  "airborne_confusion": {
+    "climb": {
+      "climb": 0.921,
+      "cruise": 0.078,
+      "descent": 0.001
+    },
+    "cruise": {
+      "climb": 0.067,
+      "cruise": 0.903,
+      "descent": 0.03
+    },
+    "descent": {
+      "climb": 0.004,
+      "cruise": 0.237,
+      "descent": 0.759
+    }
+  },
+  "phase_hours": {
+    "cruise": 215.4,
+    "descent": 182.2,
+    "climb": 157.6,
+    "taxi_out": 114.9,
+    "taxi_in": 61.6,
+    "approach": 41.6,
+    "parked": 16.1,
+    "takeoff": 8.1,
+    "landing": 4.9
+  }
+}
