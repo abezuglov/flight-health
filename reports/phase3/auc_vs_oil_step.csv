@@ -1,0 +1,20 @@
+label,n,all,engine,operational,cylinders_vs_siblings,oil_only,all_except_oil,oil_step_psi
+intake gasket leak/damage,4310.0,0.879,0.872,0.548,0.581,0.823,0.617,1.44
+rocker cover leak/loose/damage,2260.0,0.888,0.878,0.543,0.553,0.838,0.604,1.344
+baffle crack/damage/loose/miss,600.0,0.879,0.87,0.562,0.586,0.843,0.613,1.429
+intake tube/bolt/seal/boot loose or damage,597.0,0.899,0.891,0.5,0.547,0.841,0.549,1.646
+baffle plug need repair/replace,512.0,0.892,0.886,0.567,0.607,0.817,0.637,0.991
+baffle screw miss/loose,403.0,0.886,0.891,0.503,0.552,0.849,0.579,0.956
+baffle seal loose/damage,383.0,0.873,0.868,0.588,0.569,0.81,0.561,1.726
+engine failure/fire/time out,299.0,0.562,0.541,0.514,0.525,0.558,0.551,0.367
+baffle tie/tie rod loose or damage,275.0,0.875,0.872,0.537,0.536,0.823,0.644,1.402
+engine run rough,273.0,0.534,0.547,0.5,0.616,0.502,0.523,-0.106
+cylinder compression issue,265.0,0.879,0.876,0.541,0.611,0.788,0.656,0.953
+cylinder crack/fail/need part repair,203.0,0.782,0.771,0.523,0.648,0.713,0.668,1.047
+engine/propeller overspeed or damage,176.0,0.495,0.504,0.548,0.527,0.484,0.512,0.591
+pilot/in-flight noticed issue,169.0,0.427,0.468,0.495,0.513,0.44,0.491,-0.113
+engine idle/rpm issue,162.0,0.573,0.598,0.552,0.513,0.569,0.543,-0.564
+engine seal/tube/bolt loose or damage,154.0,0.89,0.871,0.518,0.558,0.811,0.635,1.199
+engine need repair/reinstall/clean,153.0,0.747,0.747,0.472,0.591,0.723,0.583,0.296
+oil cooler need maintenance,139.0,0.833,0.826,0.578,0.632,0.732,0.64,1.568
+baffle rivet loose/miss/damage,113.0,0.892,0.879,0.538,0.439,0.834,0.558,0.815

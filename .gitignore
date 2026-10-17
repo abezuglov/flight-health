@@ -15,3 +15,6 @@ reports/phase2/injection_scores.csv
 
 # copy of the trend chart published with the progress page
 /engine_trends.png
+reports/phase3/unsupervised_scores.csv
+reports/phase3/oof_predictions.parquet
+/oil_pressure_step.png

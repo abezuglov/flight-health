@@ -29,7 +29,7 @@ def engine_deviation(df: pd.DataFrame, family: str) -> pd.DataFrame:
     """Each engine minus the median of all four, per second."""
     cols = [f"{family}_{k}" for k in range(1, 5)]
     x = df[cols].to_numpy(float)
-    with np.errstate(all="ignore"):
+    with np.errstate(all="ignore"), _quiet():
         med = np.nanmedian(x, axis=1, keepdims=True)
     return pd.DataFrame(x - med, columns=[f"{family}_dev_{k}" for k in range(1, 5)], index=df.index)
 

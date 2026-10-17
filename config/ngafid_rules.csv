@@ -1,0 +1,16 @@
+mnemonic_regex,valid_min,valid_max,sentinels,stuck_check,note
+^(VOLT1|VOLT2)$,10,32,,,bus voltage; 0 = not recorded
+^AMP1$,-80,80,,,main battery ammeter
+^AMP2$,-20,20,,,standby battery ammeter
+^(FQTY_L|FQTY_R)$,0,30,,,gal per tank; 54 = full-scale reading above a 172's capacity
+^FF$,0,25,,y,fuel flow gal/h
+^OIT$,0,300,,,oil temp F (limit 245)
+^OIP$,0,120,,,oil pressure psi (limit 115)
+^RPM$,0,3200,,,kept above redline: overspeed is one of the fault types
+^CHT_\d$,0,650,,y,cylinder head temp F (limit 500)
+^EGT_\d$,0,1800,,y,exhaust gas temp F
+^OAT$,-60,60,,,outside air temp C
+^IAS$,-5,200,,,indicated airspeed kt (Vne 163)
+^VSPD$,-6000,6000,,,vertical speed ft/min
+^NORMAC$,-3,5,,,normal acceleration
+^ALT$,-1500,20000,,,altitude MSL ft (172 ceiling about 14000)

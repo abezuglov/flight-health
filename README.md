@@ -81,6 +81,22 @@ python scripts/run_trends.py          # engine step changes + ground runs before
 python scripts/plot_trends.py reports/phase2/figures/engine_trends.png
 ```
 
+## Phase 3 results: validation against real maintenance (NGAFID)
+
+Full write-up: [docs/phase3_findings.md](docs/phase3_findings.md).
+
+- **A gradient-boosted classifier on hand-built features matches the published deep-learning benchmark** for telling flights before maintenance from flights after: 76.3% accuracy vs 76.0% (ConvMHSA), on the authors' folds, with a shuffled-label control at 49.7%.
+- **Most of that accuracy is a shop-visit effect, not the faults.** Cruise oil pressure is ~1.3 psi higher right after maintenance for almost every fault type, including cooling-baffle parts unrelated to oil. Oil channels alone give 72%; everything except oil gives 57%. Per fault type, accuracy tracks the size of the oil step (Spearman 0.56, p = 0.013).
+- **The faults that matter most are at chance:** engine run rough, engine failure, overspeed. Unsupervised scores are at chance for every fault type, as the dataset authors predicted.
+- **The small real signal sits where physics says it should:** cylinder-vs-siblings features do best on cylinder cracks, compression problems and rough running (AUC 0.61–0.65).
+
+```
+python scripts/build_ngafid.py data/raw/ngafid/2days data/processed/ngafid
+python scripts/eval_ngafid.py         # unsupervised + supervised, per fault type
+python scripts/explain_ngafid.py      # permutation importance by channel
+python scripts/plot_oil_step.py
+```
+
 ## Safety note
 
 The NGAFID data ships as a Python pickle. It was scanned with `pickletools` first (it only builds numpy arrays) and is loaded only through [scripts/safe_pickle.py](scripts/safe_pickle.py), which refuses any other type.

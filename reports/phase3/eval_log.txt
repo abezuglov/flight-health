@@ -1,0 +1,58 @@
+A. unsupervised, trained on post-maintenance flights only (ROC AUC, 0.5 = chance)
+                                    subset     n  pca_score  pca_max_score  sibling_z
+                               all flights 11446      0.497          0.495      0.495
+            baffle crack/damage/loose/miss   600      0.513          0.501      0.505
+           baffle plug need repair/replace   512      0.515          0.522      0.493
+                   baffle screw miss/loose   403      0.433          0.437      0.416
+                  baffle seal loose/damage   383      0.536          0.527      0.560
+        baffle tie/tie rod loose or damage   275      0.407          0.398      0.423
+                cylinder compression issue   265      0.459          0.431      0.483
+      cylinder crack/fail/need part repair   203      0.466          0.488      0.450
+              engine failure/fire/time out   299      0.516          0.502      0.459
+                          engine run rough   273      0.503          0.482      0.547
+                 intake gasket leak/damage  4310      0.492          0.499      0.494
+intake tube/bolt/seal/boot loose or damage   597      0.537          0.537      0.521
+            rocker cover leak/loose/damage  2260      0.490          0.483      0.490
+
+B. supervised, authors' 5 folds (paper best: ConvMHSA 76.0% accuracy)
+             features  n_features  accuracy  accuracy_sd   auc
+                  all         358     0.763        0.013 0.851
+               engine         222     0.761        0.007 0.844
+          operational          88     0.530        0.008 0.542
+cylinders_vs_siblings          78     0.550        0.004 0.571
+             oil_only          24     0.723        0.011 0.797
+       all_except_oil         334     0.574        0.003 0.603
+all (shuffled labels)         358     0.497        0.005 0.497
+
+recall of 'before' flights by flights-before-maintenance (0 = last flight before):
+                            n  recall_at_0.5
+number_flights_before                       
+-1                        1.0          1.000
+ 0                     1386.0          0.765
+ 1                     1221.0          0.767
+ 2                     1126.0          0.756
+ 3                     1009.0          0.743
+ 4                      859.0          0.738
+
+AUC by fault type:
+                                                 n    all  engine  operational  cylinders_vs_siblings  oil_only  all_except_oil
+label                                                                                                                          
+intake gasket leak/damage                   4310.0  0.879   0.872        0.548                  0.581     0.823           0.617
+rocker cover leak/loose/damage              2260.0  0.888   0.878        0.543                  0.553     0.838           0.604
+baffle crack/damage/loose/miss               600.0  0.879   0.870        0.562                  0.586     0.843           0.613
+intake tube/bolt/seal/boot loose or damage   597.0  0.899   0.891        0.500                  0.547     0.841           0.549
+baffle plug need repair/replace              512.0  0.892   0.886        0.567                  0.607     0.817           0.637
+baffle screw miss/loose                      403.0  0.886   0.891        0.503                  0.552     0.849           0.579
+baffle seal loose/damage                     383.0  0.873   0.868        0.588                  0.569     0.810           0.561
+engine failure/fire/time out                 299.0  0.562   0.541        0.514                  0.525     0.558           0.551
+baffle tie/tie rod loose or damage           275.0  0.875   0.872        0.537                  0.536     0.823           0.644
+engine run rough                             273.0  0.534   0.547        0.500                  0.616     0.502           0.523
+cylinder compression issue                   265.0  0.879   0.876        0.541                  0.611     0.788           0.656
+cylinder crack/fail/need part repair         203.0  0.782   0.771        0.523                  0.648     0.713           0.668
+engine/propeller overspeed or damage         176.0  0.495   0.504        0.548                  0.527     0.484           0.512
+pilot/in-flight noticed issue                169.0  0.427   0.468        0.495                  0.513     0.440           0.491
+engine idle/rpm issue                        162.0  0.573   0.598        0.552                  0.513     0.569           0.543
+engine seal/tube/bolt loose or damage        154.0  0.890   0.871        0.518                  0.558     0.811           0.635
+engine need repair/reinstall/clean           153.0  0.747   0.747        0.472                  0.591     0.723           0.583
+oil cooler need maintenance                  139.0  0.833   0.826        0.578                  0.632     0.732           0.640
+baffle rivet loose/miss/damage               113.0  0.892   0.879        0.538                  0.439     0.834           0.558
