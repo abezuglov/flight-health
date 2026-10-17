@@ -7,3 +7,11 @@ __pycache__/
 
 # personal progress tracker (published separately as a private artifact)
 progress.html
+
+# large regenerable outputs (rerun scripts/run_detection.py and eval_injection.py)
+reports/phase2/anomaly_scores.csv
+reports/phase2/rule_values.csv
+reports/phase2/injection_scores.csv
+
+# copy of the trend chart published with the progress page
+engine_trends.png

@@ -1,0 +1,38 @@
+flight_id,rule,phase,value,direction,description,threshold,exceeded
+670200104131253,low_oil_pressure_cruise,cruise,51.28199768066406,low,lowest oil pressure on any engine in cruise (psi),55.50665721893311,True
+670200104131441,localizer_dev_below_1000ft,approach,0.3712240159511566,high,"largest localizer deviation below 1,000 ft (DDM)",0.3689347076416015,True
+670200104181518,high_sink_below_1000ft,approach,-1780.0,low,"steepest descent rate below 1,000 ft radio altitude (ft/min)",-1722.33,True
+670200104200614,glideslope_dev_below_1000ft,approach,0.7667399644851685,high,"largest glideslope deviation below 1,000 ft (DDM)",0.729615914821624,True
+670200104241609,hard_landing,landing,1.5761070251464844,high,peak vertical load at touchdown (g),1.5744243931770325,True
+670200104241609,landing_pitch,landing,7.074984073638916,high,highest pitch at touchdown (deg),6.598081846237181,True
+670200104242041,high_sink_below_1000ft,approach,-2053.0,low,"steepest descent rate below 1,000 ft radio altitude (ft/min)",-1722.33,True
+670200105060759,egt_split_cruise,cruise,88.0,high,largest EGT gap between engines in cruise,84.51249999999993,True
+670200105060759,low_oil_pressure_cruise,cruise,53.7239990234375,low,lowest oil pressure on any engine in cruise (psi),55.50665721893311,True
+670200105071308,bank_below_500ft,approach,14.292786598205566,high,largest bank angle below 500 ft (deg),13.258234710693333,True
+670200105071705,hard_landing,landing,1.7271809577941895,high,peak vertical load at touchdown (g),1.5744243931770325,True
+670200105111702,vibration_cruise,cruise,0.40625,high,highest engine vibration in cruise (in/s),0.375,True
+670200105141114,glideslope_dev_below_1000ft,approach,0.7589399814605713,high,"largest glideslope deviation below 1,000 ft (DDM)",0.729615914821624,True
+670200105172034,n1_split_cruise,cruise,30.78125,high,largest N1 gap between engines in cruise (%),2.1214062499999997,True
+670200105172034,egt_split_cruise,cruise,192.125,high,largest EGT gap between engines in cruise,84.51249999999993,True
+670200105181144,high_sink_below_1000ft,approach,-1790.0,low,"steepest descent rate below 1,000 ft radio altitude (ft/min)",-1722.33,True
+670200105190914,hard_landing,landing,1.6058640480041504,high,peak vertical load at touchdown (g),1.5744243931770325,True
+670200105211459,high_oil_temp_cruise,cruise,136.49517822265625,high,highest oil temperature on any engine in cruise,135.51473083496091,True
+670200105220603,n1_split_cruise,cruise,2.34375,high,largest N1 gap between engines in cruise (%),2.1214062499999997,True
+670200105221627,egt_split_cruise,cruise,87.25,high,largest EGT gap between engines in cruise,84.51249999999993,True
+670200105251154,high_oil_temp_cruise,cruise,136.49517822265625,high,highest oil temperature on any engine in cruise,135.51473083496091,True
+670200106031129,high_oil_temp_cruise,cruise,136.49517822265625,high,highest oil temperature on any engine in cruise,135.51473083496091,True
+670200106041748,landing_pitch,landing,6.6465301513671875,high,highest pitch at touchdown (deg),6.598081846237181,True
+670200106081534,takeoff_pitch,takeoff,20.2691707611084,high,highest pitch during takeoff (deg),19.733767318725587,True
+670200106101057,max_egt,takeoff,632.0,high,hottest EGT on any engine during takeoff,631.0,True
+670200106150815,low_oil_pressure_cruise,cruise,53.7239990234375,low,lowest oil pressure on any engine in cruise (psi),55.50665721893311,True
+670200106161614,landing_pitch,landing,6.998082160949707,high,highest pitch at touchdown (deg),6.598081846237181,True
+670200106201007,localizer_dev_below_1000ft,approach,0.3871000111103058,high,"largest localizer deviation below 1,000 ft (DDM)",0.3689347076416015,True
+670200106201007,bank_below_500ft,approach,33.04589080810547,high,largest bank angle below 500 ft (deg),13.258234710693333,True
+670200106210441,takeoff_pitch,takeoff,19.77480125427246,high,highest pitch during takeoff (deg),19.733767318725587,True
+670200106220546,glideslope_dev_below_1000ft,approach,0.7632299661636353,high,"largest glideslope deviation below 1,000 ft (DDM)",0.729615914821624,True
+670200106221722,localizer_dev_below_1000ft,approach,0.374752014875412,high,"largest localizer deviation below 1,000 ft (DDM)",0.3689347076416015,True
+670200106221722,bank_below_500ft,approach,14.842086791992188,high,largest bank angle below 500 ft (deg),13.258234710693333,True
+670200107040327,n1_split_cruise,cruise,2.1328125,high,largest N1 gap between engines in cruise (%),2.1214062499999997,True
+670200107101932,max_egt,takeoff,632.0,high,hottest EGT on any engine during takeoff,631.0,True
+670200107110502,takeoff_pitch,takeoff,19.74184226989746,high,highest pitch during takeoff (deg),19.733767318725587,True
+670200107111520,vibration_cruise,cruise,0.40625,high,highest engine vibration in cruise (in/s),0.375,True

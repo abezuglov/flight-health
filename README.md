@@ -65,6 +65,22 @@ Every cleaning step and the reasoning behind it: [docs/cleaning_decisions.md](do
 
 Full numbers: [reports/quality_summary.json](reports/quality_summary.json), [reports/dropped_by_param.csv](reports/dropped_by_param.csv), [reports/phase_vs_acms.csv](reports/phase_vs_acms.csv).
 
+## Phase 2 results: anomaly detection
+
+Full write-up: [docs/phase2_findings.md](docs/phase2_findings.md).
+
+- **Comparing each engine with its siblings works; a whole-aircraft score doesn't.** On faults injected into held-out flights, at a 5% false-alarm rate, the engine detector catches a 20 °C EGT offset 99% of the time (limit rules: 6%), a 0.25% N1 offset 98% (rules: 6%), a 5 psi oil-pressure drop 75% (rules: 12%) and a 0.1 in/s vibration rise 80% (rules: 30%), and names the right engine channel for most of them. A PCA over all 406 features misses most of these; isolation forest misses all of them.
+- **Engine trend monitoring found two maintenance-like events without labels.** Engine 4 oil pressure steps up 15 psi on 16 April and back down 11 psi on 11 July. Each step comes right after overnight ground runs of engine 4 at about 95% N1, the usual pattern of maintenance followed by a run-up check. No maintenance log is available to confirm.
+- **The top-scored real flights are mostly operational, not faults:** a crew throttling one engine back in cruise, speed brakes used in climb. A useful reminder that "unusual" and "broken" are different questions.
+
+```
+python scripts/build_features.py      # phase features + rule values
+python scripts/run_detection.py       # rules, global models, cross-fitted engine scores
+python scripts/eval_injection.py      # fault-injection evaluation
+python scripts/run_trends.py          # engine step changes + ground runs before them
+python scripts/plot_trends.py reports/phase2/figures/engine_trends.png
+```
+
 ## Safety note
 
 The NGAFID data ships as a Python pickle. It was scanned with `pickletools` first (it only builds numpy arrays) and is loaded only through [scripts/safe_pickle.py](scripts/safe_pickle.py), which refuses any other type.
