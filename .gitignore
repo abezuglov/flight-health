@@ -1,5 +1,5 @@
 # data stays local: raw downloads are 7 GB and processed tables 1.3 GB
-data/
+/data/
 .venv/
 __pycache__/
 *.pyc
